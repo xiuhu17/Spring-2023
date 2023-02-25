@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{ECE 491}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1 Proof}
+$\forall \delta \in [-\Delta, \Delta]$, we can fix one of this $\delta$, then we can get this inequality, 
+\[
+\begin{split}
+|p(x) - \tilde{p}(x)| &= |\sum \limits_{i=0}^{n-1} a_ix^i - \sum \limits_{i=0}^{n-1} (a_i + \delta_ia_i)x^i| \\ 
+&=|\sum \limits_{i=0}^{n-1} a_ix^i - \sum \limits_{i=0}^{n-1} (a_i + \delta_ia_i)x^i| \\ 
+&=|\sum \limits_{i=0}^{n-1} \delta_ia_ix^i| \\
+&\le \sum \limits_{i=0}^{n-1}| \delta_ia_ix^i|  \\
+&\le \max_i |\delta_i|  \sum \limits_{i=0}^{n-1}| a_ix^i| 
+\end{split}
+\]
+We can get equality under some circumstance, then we know that we have,
+
+\[
+\begin{split}
+\max \limits_{\delta \in [-\Delta, \Delta]^n} \frac{|p(x) - \tilde{p}(x)| / |p(x)|}{\max_i |\delta_i|} =  \frac{\max_i |\delta_i|  \sum \limits_{i=0}^{n-1}| a_ix^i|  / |p(x)|}{ \max_i |\delta_i|}  = \frac{\sum \limits_{i=0}^{n-1}| a_ix^i| }{|p(x)|}
+\end{split}
+\]
+
+Which means,
+
+$$\text{LHS} = \frac{\sum \limits_{i=0}^{n-1}| a_ix^i| }{|p(x)|} =  \frac{\sum \limits_{i=0}^{n-1}| a_ix^i| }{|\sum \limits_{i=0}^{n-1} a_ix^i |} = \text{RHS}$$
+
+\subsection*{2 Proof}
+
+
+% Now, since $\tilde{p}(x) = 0$, we know,
+% $$|p(x) - \tilde{p}(x)| =|\sum \limits_{i=0}^{n-1} \delta_ia_ix^i| = |\sum \limits_{i=0}^{n-1} a_ix^i|$$
+
+
+
+Since we know $\text{K}_{rel} \times \text{Backward ERR}_{Rel} \ge \text{Forward ERR}_{Rel} $, and $\tilde p(x) = 0$ we we have, 
+$$k(p, x) \cdot d(p, \tilde p) \ge \frac{p(x) - \tilde p(x)}{p(x)} = \frac{p(x)}{p(x)} = 1$$
+
+So, we have,
+$$k(p, x) \ge \frac{1}{d(p, \tilde p)}$$
+
+Now, we need to calculate the distance,
+
+\[
+\begin{split}
+d(p, \tilde{p}) = \max \limits_{i \in {\{1, ..., n -1\}}} \frac{|a_i - \delta_ia_i - a_i|}{|a_i|} =  \max \limits_{i \in {\{1, ..., n -1\}}} \frac{|\delta_ia_i|}{|a_i|} =  \max \limits_{i \in {\{1, ..., n -1\}}} |\delta_i|
+\end{split}
+\]
+
+From part1, we know the expression of $|p(x) - \tilde{p}(x)|$, which is,
+
+$$|p(x) - \tilde{p}(x)| =|\sum \limits_{i=0}^{n-1} \delta_ia_ix^i| $$
+
+Since $\tilde{p}(x) = 0$, we know,
+
+$$|p(x) - \tilde{p}(x)| = |p(x)| \implies |p(x)| = |p - \tilde p(x)| =  |\sum \limits_{i=0}^{n-1} \delta_ia_ix^i| = |\sum \limits_{i=0}^{n-1} a_ix^i| $$
+
+From the definition of $k(p, x)$, we have, 
+\[
+\begin{split}
+k(p, x) = \max \limits_{\delta \in [-\Delta, \Delta]^n} \frac{|p(x) - \tilde{p}(x)| / |p(x)|}{\max_i |\delta_i|} = \max \limits_{\delta \in [-\Delta, \Delta]^n} \frac{1}{d(p, \tilde p)}
+\end{split}
+\]
+
+Which means, $k(p, x)$ can reach the value $\frac{1}{d(p, \tilde p)}$, W.R.T some $\delta$,
+
+So that, $$k(p, x) = \frac{\sum \limits_{i = 0}^{n-1}|a_ix^i|}{|p(x)|} = \frac{1}{d(p, \tilde p)}$$
+
+% From part1, we know the inequality of $|p(x) - \tilde{p}(x)|$, which is,
+
+% $$|p(x) - \tilde{p}(x)| \le \max_i |\delta_i|  \sum \limits_{i=0}^{n-1}| a_ix^i| = d(p, \tilde{p}) |p(x)|$$
+
+% Since $\tilde{p}(x) = 0$, we know,
+
+
+
+\end{document}

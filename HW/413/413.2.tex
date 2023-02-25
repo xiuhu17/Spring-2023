@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 413}
+\author{Zhihao Wang}
+\date{January 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+Since each two rooks can not attack each other, we consider the chessboard with its col and row independently.
+
+First we choose random six cols where the rooks can be positioned at, because all rooks are identical, there is no difference W.R.T the permutation, or it could only be count increasingly, 
+
+$${8 \choose 6} = 28$$
+
+Second we need to choose the row where the rooks can be positioned a. WLOG, we consider the col we choose from left to right with the possible rows $\{1, 2, ..., 8 \}$, 
+
+$$P(8, 6) = 20160$$
+
+The total number is,
+$$\text{Total} = 28 \cdot 20160 = 564480$$
+\subsection*{2}
+Since we must include element $n$, so we can get a combination of $k - 1$ elements from set $\{1, 2, ..., n - 1\}$, and the number we get,
+
+$${n - 1 \choose k - 1}$$
+
+Since we need to get permutations of all $k$ elements,
+
+$$P(k, k)$$
+
+Therefore the total number we get is,
+
+$${n - 1 \choose k - 1} \cdot P(k, k)$$
+
+\subsection*{3 Proof}
+
+Use the theorem,
+$${n \choose k}{k \choose m} = {n \choose m}{{n - m} \choose {k - m}}$$
+
+We can get,
+
+$$\sum \limits_{k = 0}^{n} {n \choose k}{k \choose m} = {n \choose m} \sum \limits_{k = m}^{n} {{n - m} \choose {k - m}} = {n \choose m} \sum \limits_{t = 0}^{n - m} {{n - m} \choose {t}}$$\
+
+Since,
+
+$$\sum \limits_{k = 0}^{k = n}{n \choose k} = 2^n$$
+
+We can get,
+$${n \choose m} \sum \limits_{t = 0}^{n - m} {{n - m} \choose {t}} = {n \choose m}2^{n - m}$$
+
+
+Therefore,
+$$\sum \limits_{k = 0}^{n} {n \choose k}{k \choose m} = {n \choose m}2^{n - m}$$
+
+\subsection*{4 Proof}
+We partition this problem into $n$ sets. WLOG, $kth$ set represents we can only contain contains exactly $k$ 1's, according to theorem 2.4.2, we can get, 
+
+$$|S_k| = \frac{(m + k)!}{k! \cdot m!} = {{m + k} \choose m}$$
+
+So, the total count is,
+
+$$\text{Total} = \sum \limits_{k = 0}^{n} |S_k| =  \sum \limits_{k = 0}^{n} {{m + k} \choose m}$$
+
+According to,
+
+$${{n + 1} \choose {r + 1}} = \sum \limits_{k = 0}^{n} {k \choose r}$$
+
+We can get,
+$$\sum \limits_{k = 0}^{n} {{m + k} \choose m} = {{m + n + 1} \choose {m + 1}}$$
+
+Therefore,
+
+$$\text{Total} = {{m + n + 1} \choose {m + 1}}$$
+\subsection*{5 Proof}
+$${{3n + 1 } \choose {n}} = {{3n+1}\choose{2n+1}}$$
+The equation on the left hand side represents the total number of different lattice path from $(0, 0)$ to $(2n+1, n)$.
+$$\sum \limits_{k = 0}^{n} {{n+k} \choose k}{{2n-k}\choose{n-k}} = \sum \limits_{k = 0}^{n} {{n+k} \choose n}{{2n-k}\choose{n}}$$
+We could further partition this problem into $n + 1$ situations. WLOG, $kth$ situation means we should go to intermediate point $(n, k)$ as our final position when x-coordinate is $n$, and the count of first part is,
+
+$$ {{n+k} \choose n}$$
+
+Since, $(n, k)$ as our final position when x-coordinate is $n$, we could not go upward, the next step we could walk is horizontal step, and we will get to $(n + 1, k)$. The count of second part, that is, from $(n + 1, k)$ to $(2n+1, n)$ is,
+
+ $${{2n-k}\choose{n}}$$
+
+Then, we get each set, $S_k$, the count of different lattice paths is,
+
+$$|S_k| = {{n+k} \choose n}{{2n-k}\choose{n}}$$
+
+So, we can get,
+
+$${{3n+1}\choose{2n+1}} = \sum \limits_{k = 0}^{n} |S_k|  = \sum \limits_{k = 0}^{n}{{n+k} \choose n}{{2n-k}\choose{n}}$$
+
+Which is,
+
+$${{3n + 1 } \choose {n}} =\sum \limits_{k = 0}^{n} {{n+k} \choose k}{{2n-k}\choose{n-k}} $$
+
+
+\end{document}

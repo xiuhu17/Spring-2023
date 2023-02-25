@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 484}
+\author{Zhihao Wang}
+\date{January 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+\subsubsection*{(a)}
+\[
+\begin{split}
+\begin{bmatrix} -1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 1\end{bmatrix}
+\end{split}
+\]
+
+Since this matrix is diagonal matrix, so the eigenvalues are on its diagonal. Since $-1 < 0$, $2, 1 > 0$. According to theorem 3.2, it is indefinite. 
+\subsubsection*{(b)}
+\[
+\begin{split}
+\begin{bmatrix} 2 & 1 & 4 \\ 1 & 3 & 1 \\ 4 & 1 & -1\end{bmatrix}
+\end{split}
+\]
+
+Since this matrix is symmetric, so we can apply theorem 3.2 to it, firs we need to get its eigenvalues.
+\[
+\begin{split}
+& \det(\begin{bmatrix} 2 & 1 & 4 \\ 1 & 3 & 1 \\ 4 & 1 & -1\end{bmatrix} - \lambda \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}) = -\lambda^3+4\lambda^2+17\lambda-47 = 0 \\ & \implies \lambda_1 \approx 2.2 , \lambda_2 \approx -3.8, \lambda_3 \approx 5.5
+\end{split}
+\]
+
+Since $\lambda_2 < 0$, $\lambda_1 > 0 , \lambda_3 > 0$. According to theorem 3.2, it is indefinite. 
+\subsubsection*{(c)}
+\[
+\begin{split}
+\begin{bmatrix} 1 & -2 & 0 \\ -2 & 4 & 0 \\ 0 & 0 & 3\end{bmatrix}
+\end{split}
+\]
+Since this matrix is symmetric, so we can apply theorem 3.2 to it, firs we need to get its eigenvalues.
+\[
+\begin{split}
+& \det(\begin{bmatrix} 1 & -2 & 0 \\ -2 & 4 & 0 \\ 0 & 0 & 3\end{bmatrix} - \lambda \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}) = -\lambda^3+8\lambda^2-15\lambda \\ & \implies \lambda_1 \approx 0 , \lambda_2 \approx 3, \lambda_3 = 5 
+\end{split}
+\]
+Since $\lambda_2 = 0$, $\lambda_1 > 0 , \lambda_3 > 0$. According to theorem 3.2, it is positive semi-definite.
+\subsection*{2}
+My first intuition is,
+\[
+\begin{split}
+\begin{bmatrix} 1 & 2 & -1 \\ 2 & 4 & -2 \\ -1 & -2 & 1\end{bmatrix} 
+\end{split}
+\]
+\textbf{Explanation:} According to the equation from slide,
+
+$$X^TAX = \sum \limits_{i} \sum \limits_{j} A_{ij}x_ix_j$$
+
+We can put corresponding coefficient to the position of matrix, that is,
+\[
+\begin{split}
+(x_1 + 2x_2 - x_3)^2 = \ &1x_1x_1+2x_1x_2-1x_1x_3+ \\ 
+                            &2x_2x_1 +4x_2x_2-2x_2x_3+ \\
+                            &-1x_3x_1-2x_3x_2+x_3x_3
+\end{split}
+\]
+
+Since $\forall X \in \mathcal{R}^3$, $X^TAX \ge 0$, it must be  positive semi-definite.
+
+
+\subsection*{3}
+$$x^2 + y^3 - 3xy$$
+
+We can get the first derivative as vector, and set it to $0$
+
+$$\begin{bmatrix} 2x - 3y \\ 3y^2 - 3x\end{bmatrix} = 0 \implies (x, y) \in \{(0, 0), (\frac{9}{4}, \frac{3}{2}) \}$$
+
+Now, we can get the second derivative as Hessian matrix,
+$$\begin{bmatrix} 2 & -3 \\ -3 & 6y\end{bmatrix} $$
+
+Plug in to different critical points, get two different matrices, 
+$$\begin{bmatrix} 2 & -3 \\ -3 & 0\end{bmatrix} , \begin{bmatrix} 2 & -3 \\ -3 & 9\end{bmatrix} $$
+
+Get the eigenvalues,
+
+$$
+\begin{cases*}
+\lambda_1 = 1+\sqrt{10}, \lambda_2=1-\sqrt{10}\\
+\lambda_1=\frac{11+\sqrt{85}}{2}, \lambda_2=\frac{11-\sqrt{85}}{2}
+\end{cases*}
+$$
+
+According to theorem 3.2, the first matrix is indefinite, according to theorem 4.2, it is a saddle point, \\
+According to theorem 3.2, the second matrix is positive definite, according to theorem 2.1, it is a strict local minimizer.
+
+So we get $(0, 0)$ as saddle point, and $ (\frac{9}{4}, \frac{3}{2})$ is a strict local minimizer.
+
+\subsection*{5 Proof}
+\subsubsection*{(a)}
+
+$$\forall X \in \mathcal{R}^n, X^TAX = X^TB^TBX = \langle BX, BX\rangle = \|BX \|^2_2 \ge 0$$
+
+So matrix $A$ is positive semi-definite.
+
+\subsubsection*{(b)}
+Since $A$ is positive semi-definite, $A$ is also symmetric, applying spectrum theorem on self-adjoint matrix, we can get,
+
+$$A = U^{*}DU = U^TDU$$
+
+Where $D = \diag{(\lambda_1, ..., \lambda_n)$. Since $A$ is positive semi-definite, all its eigenvalues are non-negative according to theorem 3.2, we can write $D$ as
+
+$$D = \sqrt{D}\sqrt{D} =\sqrt{D} \sqrt{D}^T$$
+
+Where,
+$$\sqrt{D}_{ij} = \sqrt{D_{ij}}$$
+
+So we get,
+
+$$A = U^T\sqrt{D} \sqrt{D}^TU = (\sqrt{D}^TU)^T\sqrt{D}^TU = B^TB$$
+
+So,
+
+$$B = \sqrt{D}^TU$$
+
+
+\end{document}

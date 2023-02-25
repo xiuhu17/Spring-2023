@@ -1,0 +1,178 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{ECE 491}
+\author{Zhihao Wang}
+\date{January 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1 Proof}
+
+% [\
+% \begin{split}
+
+% f(x) = \sum \limits_{n=0}^\infty \frac {{f^{(n)}} (a)}{n!} (x-a)^n
+
+% \end{split}
+% \]
+
+We can write it as Taylor series, then we can get 
+\[
+\begin{split}
+&f(x + h) = f(x) + \frac{f'(x)}{1}(h ) + \frac{f''(x)}{2}(h )^2 + \frac{f'''(x)}{6}(h)^3 + \frac{f''''(x)}{24}(h )^4 + \sum \limits_{n=5}^\infty \frac {{f^{(n)}} (x)}{n!} (h)^n \\
+&f(x - h) = f(x) + \frac{f'(x)}{1}(-h ) + \frac{f''(x)}{2}(h )^2 + \frac{f'''(x)}{6}(-h)^3 + \frac{f''''(x)}{24}(h )^4 + \sum \limits_{n=5}^\infty \frac {{f^{(n)}} (x)}{n!} (-h)^n 
+\end{split}
+\]
+
+Then we can get the following equation,
+\[
+\begin{split}
+g(x, h) = \frac{f(x + h) + f(x - h) - 2f(x)}{h^2} = \frac{f''(x)h^2 + \frac{f''''(x)h^4}{12}}{h^2} + O(h^6)
+\end{split}
+\]
+
+Then we can evaluate the truncation error as the following,
+
+\[
+\begin{split}
+|f''(x) - g(x, h)| = |f''(x) - \frac{f''(x)h^2 + \frac{f''''(x)h^4}{12}}{h^2} + O(h^6)| \le O(\frac{f^{(4)}(x)h^2}{12}) 
+\end{split}
+\]
+
+\subsection*{2 Proof}
+
+We first define the absolute error as 
+$$\text{Error} = \frac{|fl(fl(f(x+h)) + fl(f(x - h)) - 2fl(f(x))) - (f(x + h) + f(x - h) - 2f(x))|}{h^2}$$
+
+Use the inequality equation from hint,
+\[
+\begin{split}
+\text{Error} \le O(\epsilon_M \frac{|f(x-h)| + |f(x+h)| + 2|f(x)|}{h^2}) =  O(\epsilon_M P(x))
+\end{split}
+\]
+
+Now, we can get
+
+$$\lim \limits_{h \rightarrow 0}P(x) = \lim \limits_{h \rightarrow 0}\frac{|f(x-h)| + |f(x+h)| + 2|f(x)|}{h^2} = \frac{4|f(x)|}{h^2}$$
+
+Then, we prove that,
+$$\text{Error} \le O(\epsilon_M P(x)) = O(\epsilon_M\frac{4|f(x)|}{h^2}) =  O(\epsilon_M\frac{|f(x)|}{h^2})$$
+
+We can now get the relative error,
+\[
+\begin{split}
+\text{REL Error} &= \frac {O(\epsilon_M\frac{|f(x)|}{h^2})}{\frac{f(x + h) + f(x - h) - 2f(x)}{h^2}} \\
+                &= O(\frac{\epsilon_M|f(x)|}{f(x + h) + f(x - h) - 2f(x)})
+\end{split}
+\]
+
+When $f^{(2)}(x) \approx O(\frac{\epsilon_M |f(x)|}{h^2})$, we will get a complete loss of accuracy.
+\subsection*{3 Proof}
+
+We can get thee following inequality,
+\[
+\begin{split}
+\text{Error} &= \frac{|f(fl(x+h)) + f(fl(x - h)) - 2f((fl(x)) - (f(x + h) + f(x - h) - 2f(x))|} {h^2} \\
+            &\le |\frac{f(fl(x+h)) - f(x+h)}{h^2}| + |\frac{f(fl(x-h)) - f(x-h)}{h^2}| + 2|\frac{f(fl(x)) - f(x)}{h^2}| \\
+            &\le |\frac{f((1+\epsilon_M)(x+h)) - f(x+h)}{h^2}| + |\frac{f((1+\epsilon_M)(x-h)) - f(x-h)}{h^2}| + 2|\frac{f((1+\epsilon_M)(x)) - f(x)}{h^2}|
+\end{split}
+\]
+
+Since, $h \rightarrow 0$, we can get,
+\[
+\begin{split}
+& |\frac{f((1+\epsilon_M)(x+h)) - f(x+h)}{h^2}| \approx |\frac{f((x+h)) - f(x+h) + f'(x+h)\epsilon_M(x+h)}{h^2}| \\
+& \lim \limits_{h \rightarrow 0} |\frac{f((x+h)) - f(x+h) + f'(x+h)\epsilon_M(x+h)}{h^2}| = \frac{\epsilon_M |xf'(x)|}{h^2}\\
+& |\frac{f((1+\epsilon_M)(x-h)) - f(x-h)}{h^2}| \approx |\frac{f((x-h)) - f(x-h) + f'(x-h)\epsilon_M(x-h)}{h^2}| \\
+& \lim \limits_{h \rightarrow 0} |\frac{f((x-h)) - f(x-h) + f'(x-h)\epsilon_M(x-h)}{h^2}| = \frac{\epsilon_M |xf'(x)|}{h^2}\\
+& 2|\frac{f((1+\epsilon_M)(x)) - f(x)}{h^2}| \approx 2|\frac{f((x)) - f(x) + f'(x)\epsilon_Mx}{h^2}| \\
+& \lim \limits_{h \rightarrow 0} 2|\frac{f((x)) - f(x) + f'(x)\epsilon_Mx}{h^2}| =  2\frac{\epsilon_M |xf'(x)|}{h^2}
+\end{split}
+\]
+So, we can get,
+
+\[
+\begin{split}
+\text{Error} \le 4\frac{\epsilon_M |xf'(x)|}{h^2}
+\end{split}
+\]
+\subsection*{4 Proof}
+Now we can get the following equation,
+$$\text{Total Error} = \frac{h^2}{12}|f^{(4)}(x)| + O(\epsilon_M\frac{|f(x)|}{h^2}) +4\frac{\epsilon_M |xf'(x)|}{h^2}$$
+
+Since the rounding error from (2) is negligible W.R.T (3), we can further get,
+\[
+\begin{split}
+\text{Total Error} \approx \frac{h^2}{12}|f^{(4)}(x)| + 4\frac{\epsilon_M |xf'(x)|}{h^2}
+\end{split}
+\]
+
+Now, we could use Cauchy's inequality,
+\[
+\begin{split}
+\frac{h^2}{12}|f^{(4)}(x)| + 4\frac{\epsilon_M |xf'(x)|}{h^2} \ge 2\sqrt{\frac{\epsilon_M|xf^{(1)}(x)f^{(4)}(x)|}{3}}, \text{when} \ x =  \sqrt[4]{48\frac{\epsilon_M|f^{(1)}(x)|}{|f^{(4)}(x)|}}
+\end{split}
+\]
+\subsection*{5 Proof}
+
+The estimated minimal Total Error I have computed from (4), which is
+
+$$2\sqrt{\frac{\epsilon_M|xf^{(1)}(x)f^{(4)}(x)|}{3}}$$
+
+\end{document}

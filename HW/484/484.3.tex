@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 484}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1 Proof}
+\subsubsection*{(a)}
+
+By the definition of convex set,
+$$\forall (x_1, y_1), (x_2, y_2)  \in D, [(x_1, y_1), (x_2, y_2)] := \{t(x_1, y_1)+ (1 - t)(x_2, y_2) : 0 \le t \le 1 \}$$
+
+Then we can get,
+$$\forall (z_x, z_y) \in [(x_1, y_1), (x_2, y_2)], (z_x, z_y) := (tx_1 + (1 - t)x_2, ty_1 + (1 - t)y_2)$$
+
+So, we have the equality,
+
+$$|z_x| + |z_y| = |tx_1 + (1 - t)x_2| + | ty_1 + (1 - t)y_2)| $$
+
+By triangular inequality, 
+\[
+\begin{split}
+|tx_1 + (1 - t)x_2| + | ty_1 + (1 - t)y_2)| &\le t(|x_1| + |y_1|) + (1-t)(|x_2| + |y_2|) \\
+&\le t + (1 - t) \\
+& = 1
+\end{split}
+\]
+
+Therefore, $(z_x, z_y)  \in D$
+\subsubsection*{(b)}
+By the definition of convex set,
+$$\forall x, y \in L_c^{-}(f), [x, y] := \{tx + (1 - t)y : 0 \le t \le 1 \}$$
+
+Then we can get,
+$$\forall z \in [x, y], z := tx + (1 - t)y$$
+
+So, we have the equality,
+
+$$f(z) = f(tx + (1-t)y)$$
+
+Since the function $f$ is convex function, we have the inequality,
+$$ f(tx + (1-t)y) \le tf(x) + (1-t)f(y)$$
+
+Further,
+\[
+\begin{split}
+ tf(x) + (1-t)f(y) &\le tc + (1-t)c \\
+&= c
+\end{split}
+\]
+
+So, we get $z \in  L_c^{-}(f)$ 
+\subsection*{2 }
+\subsubsection*{(a)}
+
+I have,
+
+$$g(x) = -x, f(x) = x^2$$
+
+These two are convex since,
+
+$$\forall x \in \mathcal{R}, Hg(x)= \begin{bmatrix} 0\end{bmatrix} \succeq 0$$
+
+$$\forall x \in \mathcal{R}, Hf(x)= \begin{bmatrix} 2\end{bmatrix} \succ 0$$
+
+And,
+
+$$h(x) = g(f(x)) = -x^2$$
+
+is not convex, since
+
+$$\forall x \in \mathcal{R}, Hh(x)= \begin{bmatrix} -2\end{bmatrix} \prec 0$$
+\subsubsection*{(b)}
+
+I have,
+
+$$g(x) = -e^{-x}, f(x) = x$$
+
+$f(x)$ is convex since, 
+
+$$\forall x \in \mathcal{R}, Hf(x)= \begin{bmatrix} 0\end{bmatrix} \succ 0$$
+
+$g(x)$ is increasing since, 
+$$\forall x \in \mathcal{R}, g'(x) = e^{-x} \ge 0$$
+
+But, 
+
+$$h(x) = g(f(x)) = -e^{-x} $$
+
+is not convex, since
+
+$$\forall x \in \mathcal{R}, Hh(x)= \begin{bmatrix} -e^{-x}\end{bmatrix} \prec 0$$
+
+\subsubsection*{(c)}
+
+I have,
+
+$$g(x) = x, f(x) = -x$$
+
+These two are convex since,
+
+$$\forall x \in \mathcal{R}, Hg(x)= \begin{bmatrix} 0\end{bmatrix} \succeq 0$$
+
+$$\forall x \in \mathcal{R}, Hf(x)= \begin{bmatrix} 0\end{bmatrix} \succeq 0$$
+
+And,
+
+$$h(x) = g(x)f(x) = -x^2$$
+
+is not convex, since
+
+$$\forall x \in \mathcal{R}, Hh(x)= \begin{bmatrix} -2\end{bmatrix} \prec 0$$
+
+\subsection*{3 Proof}
+\subsubsection*{(a)}
+As we can see, $\mathcal{R}$ is a convex set. And we can use theorem 2.3 to prove this,
+
+$$\forall x \in \mathcal{R}, Hf(x) = e^{e^{e^x}+e^x+x}\left(e^{e^x+x}+e^x+1\right)$$
+
+Then we need to prove that $Hf(x)$ is positive semidefitive.
+$$\forall u \in \mathcal{R}, u^THf(x)u = e^{e^{e^x}+e^x+x}\left(e^{e^x+x}+e^x+1\right) u^2 \ge 0$$
+
+Therefore this is convex
+
+\subsubsection*{(b)}
+First split this function into two parts,
+$$f(x, y, z) = p(x, y) + q(y, z) = (x + y)^4 + (y-z)^4$$
+
+As we can see, $\mathcal{R}^3$ is a convex set. And we can use theorem 2.3 to prove this,
+
+$$\forall x \in \mathcal{R}, Hp(x) = (x+2y)^2\begin{bmatrix} 1&1 \\ 1 & 4 \end{bmatrix}$$
+
+By using the Sylvester's criterion, we find that $\Delta_1 = 1 > 0, \Delta_2 = 3 > 0$. Therefore, this is a positive definite matrix, therefore, $p(x)$ is convex.
+
+$$\forall x \in \mathcal{R}, Hq(x) = 12(y-z)^2\begin{bmatrix} 1&-1 \\ -1 & 1 \end{bmatrix}$$
+
+By using the eigenvalue test, we find that $\lambda_1 = 0 \ge 0, \lambda_2 = 2 > 0$. Therefore, this is a positive semidefinite matrix, therefore, $p(x)$ is convex.
+
+Therefore, the original function $f(x, y , z)$ is convex.
+
+\subsubsection*{(c)}
+As we can see, $\mathcal{R}$ is a convex set. And we can use definition to prove this,
+
+$$\forall x , y \in \mathcal{R}$$
+
+We have the the inequality,
+
+\[
+\begin{split}
+G(t) = tf(x) + (1 - t)f(y) - f(tx + (1-t)y), t \in [0, 1] 
+\end{split}
+\]
+
+If $x \ge 0, y \ge 0$, then we know $tx + (1-t)y \ge 0$, 
+
+$$G(t) = tx + (1 - t)y - tx - (1 - t)y \ge 0$$
+
+If $x < 0, x < 0$, then we know $tx + (1 - t)y < 0$, 
+$$G(t) = 0 - 0 \ge 0$$
+
+WLOG, $x \ge 0, y < 0, (1-t)y \le 0$, and $f(x)$ is an increasing function,
+$$G(t) = tx + 0 - f(tx + (1-t)y)\ge tx - f(tx) = tx - tx \ge 0$$
+
+Therefore, this function is a convex function.
+
+\subsection*{4 Proof}
+By using AM-GM inequality, we know that,
+
+$$xy^2 + yz^2 + zx^2 \ge 3 \sqrt[3]{xy^2yz^2zx^2} = 3 \sqrt[3]{(xyz)^3} = 3$$
+
+which is subject to,
+
+$$x > 0, y > 0, z > 0$$
+$$xyz = 1$$
+
+When, $$x = y = z = 1$$
+
+
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 413}
+\author{Zhihao Wang}
+\date{January 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+\subsubsection*{a}
+First we consider all possible allocations without any constraints. Though the allocation is a circle, we number each seat, so the total number of "linear permutation" is $${P(n, n)} = n!$$
+
+Now, we can put Alice and Bod together from $1, ..., n$. Though the allocation is a circle, we number each seat, so the total number of "linear permutation" $$n \cdot {P(n - 2, n - 2)} = n \cdot (n - 2)!$$
+
+Since we can either put Alice at the left side or Bob at the left side, so the total number of valid allocation is: $$n! - 2 \cdot n(n - 2)! = (n^2 - 3n) \cdot (n - 2)!$$
+
+\subsubsection*{b}
+If we make Bob to seat on the odd number, then the total number of permutation is 
+$${\lfloor \frac{n + 1}{2} \rfloor} \cdot P(n-1, n-1)$$
+
+Under the case when Bob seat on the odd number but Alice seats next to him, we get 
+$$2 \cdot \lfloor {\frac{n + 1}{2} }\rfloor \cdot P(n-2, n-2)$$
+
+Then we can get the result is $$(n - 3) \cdot \lfloor {\frac{n + 1}{2} } \rfloor \cdot (n - 2)!$$
+
+OR:
+
+We can consider that whether Bob seats on the even number does not affect whether Alice seats next to him or not, we can directly get the result as $$(n^2 - 3n) \cdot (n - 2)! \cdot \frac{\lfloor {\frac{n + 1}{2} }\rfloor }{n} = (n - 3) \cdot \lfloor {\frac{n + 1}{2} } \rfloor \cdot (n - 2)!$$
+\subsubsection*{a'}
+If we do not consider other persons, it will be 
+$$n^2 - 3n$$
+\subsubsection*{b'}
+If we do not consider other persons, it will be 
+$$(n - 3) \cdot \lfloor {\frac{n + 1}{2} } \rfloor = \frac{n^2 - 3n}{2}$$
+
+\subsection*{2 Proof}
+
+We first build a multiset $$\{1 \cdot A, 1 \cdot  B,  2 \cdot C, 2 \cdot I, 1 \cdot M, 1 \cdot N, 2 \cdot O, 1 \cdot R, 1 \cdot S, 1 \cdot T \}$$
+
+According to the \textbf{theorem 2.4.2}, we can use the equation $$\frac{P(13, 13)}{2! \cdot 2! \cdot 2!} = \frac{13 !}{8}$$
+
+\subsection*{3}
+
+We partition it into two sets $S_1, S_2$, which $S_1$ contains all words with different letters and $S_2$ contains all words with same letter.
+
+$$|S_1| = 10 \cdot 9 = 90$$
+$$|S_2| = 3$$
+
+The answer is $93$
+
+\subsection*{4 Proof}
+\subsubsection*{a}
+WLOG, we pick random element $i$ inside the set of $S = \{1, 2, ..., n\}$. Now the number of picking $k$ elements from set $S$ is ${n \choose k }$. Now, we can split this choice into two parts, first is combination without $i$, and the other is combination with $i$.
+
+We denote the first combination as $A$, and second as $B$. Apparently $A \cap B = \emptyset$. Since random choice, the combination will either contains $i$ or not, so $A \cup B = S$. So we prove that $A$, $B$ partition $S$.
+
+Selection without element $i$, then the number is ${n - 1 \choose k}$.
+Selection with element $i$, then the number is ${n - 1 \choose k - 1}$.
+
+By the Addition Principle, we get $${n \choose k } = {n - 1 \choose k} + {n - 1 \choose k - 1}$$ 
+\subsubsection*{b}
+
+\denote $A_i$ as the number of three value combination if we must include $ith$ element, and not include any element from set $\{1, ..., i - 1 \}$ for $i > 1$ or $\emptyset$ for $i = 1$. At here, $i \leq n - 2$, since we at least need three elements in one choice.
+
+First, $\forall i, j \in \{1, ..., n - 2\}, i \neq j$, WLOG $i < j$. Since $A_i$ must include $i$, and $A_j$ must not include $i$, we get $$\forall i, j \in \{1, ..., n - 2\}, i \neq j \implies A_i \cap A_j = \emptyset$$
+
+Second, For any three value combination, we must include three elements, suppose we sort them out, write it as $V = \{a, b, c\}, a < b < c$. We can say $V \in S_a$
+
+Then, We can get $$\forall i, j \in \{1, 2, ..., n - 2\}, i \neq j, \bigcup \limits_{i = 1}^{n - 2} A_i = S, S_i \cap S_j = \emptyset$$
+
+By the Addition Principle,
+
+$${n \choose 3} = \sum \limits_{i = 1}^{n - 2} S_i = \sum \limits_{i = 1}^{n - 2} {n - i \choose 2}$$
+
+
+\end{document}

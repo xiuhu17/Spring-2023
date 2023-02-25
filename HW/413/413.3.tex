@@ -1,0 +1,161 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 413}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+Suppose the number of bagels for each type is $x_1, ..., x_6$, then we can get,
+
+$$x_1 + x_2 + x_3 + x_4 + x_5 + x_6 = 20$$
+
+Since each type of bagels should have equal or more than one, we can have $y_k = x_k - 1$, where $y_k \ge 0$
+
+$$y_1 + y_2 + y_3 + y_4 + y_5 + y_6 = 20 - 6 = 14$$
+
+According to the theorem 2.5.1, we can count the number of combination is,
+
+$${{14 + 6 - 1} \choose {6 - 1}} = 11628$$
+
+The count is 11628.
+
+\subsection*{2}
+The beginning can be $\{1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 \}$
+
+If we only care about combination, the total number of combination will be, 
+$$\text{Total} = {52 \choose 5} = 2598960$$
+
+We need to choose $2$ from $4$ colors, and assign them to those cards,
+
+$${4 \choose 2}$$
+
+Also, the valid count will be,
+
+$$({5 \choose 1} + {5 \choose 2}) \cdot 2 = 30$$
+
+$$\text{count} =  |\{1, 2, 3, 4, 5, 6, 7 ,8 ,9 ,10 \}| \cdot {4 \choose 2} \cdot 30 = 3600$$
+
+The answer is still $\frac{3600}{2598960} = 0.1385 \%$
+
+\subsection*{3}
+As we know the total number of subset is,
+
+$$\text{Total} = 2^n$$
+
+Since we want exactly two even integers, number of these different choices is,
+
+$${{n / 2} \choose 2}$$
+
+Now, we need to consider about the odd integers, we can have 
+$$2^{n/2}$$
+
+Therefore, the valid count will be,
+
+$${{n / 2} \choose 2} \cdot 2^{n/2}$$
+
+So, we can get the probability as,
+
+$$\frac {{{n / 2} \choose 2} \cdot 2^{n/2}}{2^n} = \frac {{{n / 2} \choose 2}}{2^{2 / n }}$$
+
+\subsection*{4}
+The total number of elements is $n$, which means there are $2$ elements chooses from this $n - 2$ elements, we can now partition this into two situations.
+
+First, these two elements are different, then the count of combination will be,
+
+$${n \choose {n - 2}} {{n - 2} \choose 2}$$
+
+Now, we need to count the different permutation, according to theorem 2.4.2,
+
+$$\frac{n!}{2! \cdot 2!}$$
+
+The total number for first case will be,
+
+$${n \choose {n - 2}} {{n - 2} \choose 2}\frac{n!}{2! \cdot 2!}$$
+
+Second, these two elements are the same, then the count of combination will be,
+
+$${n \choose {n - 2}} {{n - 2} \choose 1}$$
+
+Now, we need to count the different permutation, according to theorem 2.4.2,
+$$\frac{n!}{3!}$$
+
+The total number for second case will be,
+
+$${n \choose {n - 2}} {{n - 2} \choose 1}\frac{n!}{3!}$$
+
+The total value will be,
+
+
+$${n \choose {n - 2}} {{n - 2} \choose 2}\frac{n!}{2! \cdot 2!} + {n \choose {n - 2}} {{n - 2} \choose 1}\frac{n!}{3!}$$
+
+\subsection*{5 Proof}
+
+Suppose the total number of students in the class is $n$, and we mark the number of known students of each students as $a_k$ where k means $kth$ student.
+
+The total known students number could be is $\{0, 1, ..., n-1 \}$
+
+Since $0$ and $n - 1$ can not be in the set at the same time, since the relationship is reciprocal.
+
+Therefore, the total known students number could be is either $\{1, ..., n-1 \}$ or $\{0, 1, ..., n-2 \}$.
+
+Total count of students is $n$, and the possible different relation is $n - 1$, By the theorem 3.1.1, there must be two students with same value.
+
+\end{document}

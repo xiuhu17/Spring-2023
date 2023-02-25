@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+  
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 413}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+WOLG, we arrange all students in a line from and denote $\{a_1, a_2, ..., a_{10} \}$ as the sum of pens from the first person to the $kth$ one, each person has at least one, so we know
+    $$a_1 < a_2 < ... < a_{10}$$
+
+Since the total is $21$,
+
+ $$ 1 \le a_1 < a_2 < ... < a_{10} \le 21$$
+
+Also, we could get,
+
+ $$ 1 + 4 \le a_1 + 4 < a_2 + 4 < ... < a_{10} + 4 \le 21 + 4$$
+ 
+ $$ 1 + 8 \le a_1 + 8 < a_2 + 8 < ... < a_{10} + 8 \le 21 + 8$$
+
+Suppose all $a_k$, $a_k + 4$  and $a_k + 8$ are distinct, we will get 30 distinct value from $1$ to $29$,
+
+By the theorem 3.1.1, we know that there must be two values that are the same, one of the three equations will be hold,
+
+$$a_i = a_j + 4 \  \text{or} \ a_i = a_j + 8 \ \text{or} \ a_i + 4 = a_j + 8$$
+
+Therefore, exists consecutive set of students altogether have exactly 4 or exactly 8 pens
+
+
+\subsection*{2}
+
+WOLG, we suppose there does not exists a $n + 1$ decreasing sequences. Denote $\{m_1, m_1, ... m_{2n+1}\}$ as the longest decreasing sequence starting from $\{a_1, a_2, ..., a_{2n+1} \}$, 
+
+    $$\frac{2n + 1}{n} > 2$$
+
+By corollary 3.2.2, we know that there must exist $3$ elements of the same value from $\{m_1, m_1, ... m_{2n+1}\}$. Suppose there are $m_{k_1} = m_{k_2} = m_{k_3}$, with  $k_1 < k_2 < k_3$.
+
+Suppose $a_{k_i} > a_{k_{i+1}}$ for $i = 1, i = 2$, we can have a longer decreasing sequences. When we put $a_{k_i}$ at the front of ${a_{k_{i+1}}}$. The length of $m_k$ will be: $m_{k_i} \ge m_{k_{i+1}} + 1$ for $i = 1, i = 2$, which contradict what we have. So,  $a_{k_i} \le a_{k_{i+1}}$. We now have,
+
+$$a_{k_1} \le a_{k_2} \le a_{k_3}$$
+
+We have has an increasing subsequence of length 3.
+
+
+\subsection*{3}
+
+As we know, the total kinds of subsets of $S$ is,
+
+$$\text{Total} = 2^n$$
+
+WLOG, for each subset $s$, we can find its complement set, $S - s$. The total number of this pair is 
+
+$$\text{Pair} = \frac{2^n}{2} = 2^{n-1}$$
+
+By the theorem 3.1.1, we know that in order to  guarantee  one pair, we must have at least $2^{n-1} + 1$ in total. That is, if we have $2^{n-1} + 1$ in total, there must at least be two subsets in one pair which are completely disjoint.  
+
+\subsection*{4}
+It is same if we could prove,
+
+$$r(m, n) > (m-1)(n-1)$$
+
+Suppose $m$ represents by coloring red, $n$ represents by coloring blue. By this equation, we could build a graph with $(n-1)$ graphs of $(m-1)$ vertices which complete red edges inside, and they do not share any vertices. 
+
+We follow the rule that all other edges(except those red edges inside $m-1$ vertices graphs) are blue. That is, all edges connecting two vertices which belong to different  $m-1$ vertices graphs are blue.
+
+We should have at least $n$ vertices which all inside edges are blue. By theorem 3.1.1, there must be two vertices belong to (the same) one of $m-1$ graphs. ($\frac{n}{n-1} > 1$)
+
+By the convention, that edgge must be red. Therefore, if we have $(m-1)(n-1)$ vertices, we can not have $K_{(m-1)(n-1)} \notimplies K_{m}, K_{n}$
+
+Then we have, $r(m, n) > (m-1)(n-1) \implies r(m, n) \ge (m-1)(n-1)+1$
+
+\subsection*{5}
+
+We follow the similar idea that, from $\{1, 2, ..., 11 \}$, join $i$ and $j$ with a red edge if and only if the distance between $i$ and $j$ along the circle is at most $3$. And all other are blue edges.
+
+By this rules, we can have all complete $4$-vertices red graph. Since once we want to have $5$ vertices, the minimum max-distance inside the subgraph is greater or equal than $4$, there must exist at least $1$ blue edge. So we can not have a red subgraph with $5$ vertices. 
+
+Now, consider blue subgraph. As we know, the total distance of the entire graph is $10$, and if we need $3$ vertices, by the corollary 3.2.2, $\frac{10}{3} < 3 + 1$, then there must exits $2$ vertices, which distance less than or equal to $3$. Therefore, that edge, will be red. So we can not have a blue subgraph with $3$ vertices. 
+
+Therefore, $K_{11} \notimplies K_5, K_3$, then we have $r(5, 3) \ge 12$
+
+
+
+\end{document}
