@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+  
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{ECE 491 EC}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{0 Proof}
+
+First we prove it is symmetric,
+
+$$(A^TA)^T = A^TA$$
+
+Second we need to prove it Symmetric positive semi-definite,
+
+$$\forall x \in \mathcal{R}^n, x^TA^TAx =\langle x, A^TAx \rangle = \| Ax\|_2^2 \ge 0$$
+
+Third, we prove that there is no zero eigenvalue in order to prove it is SPD, $\forall x \in \mathcal{R}^n $
+
+$$x^TA^TAx =\langle x, A^TAx \rangle = \| Ax\|_2^2 = 0 \iff \|Ax \|_2 = 0$$
+
+Since $A$ is full (col)rank, each col is linear independent, we know that,
+
+$$\|Ax \|_2 = 0 \iff x = 0$$
+
+Therefore, 
+$$x^TA^TAx = 0 \iff x = 0 \implies \text{A is positive definite}$$
+
+
+\subsection*{1 Proof}
+
+First define the eigenvalue/singular value of SPD matrix as $\sigma_1, ..., \sigma_n, \sigma_i < \sigma_{i - 1}$. Since it is SPD, by spectrum theorem, its eigenvalue are exactly its singular value. 
+
+If we want to make $fl(M)$ to be indefinite, we only need to make sure 
+
+$$\|fl(M) - M \|_2 = \| \delta M \|_2> \sigma_n$$
+
+We can write $M = U \Sigma U^*$, with $u_n$ as its corresponding $\sigma_n$ singular vector(also is eign vector). Denote $v_n = \frac{u_n}{\|u_n\|_2}$. Assign $\delta M = \epsilon_{mach} \|M \|_2 v_n v_n^T$, we only need
+
+$$\epsilon_{mach} \| M\|_2 > \sigma_n \implies k(M) > \frac{1}{\epsilon_{mach}}$$
+
+Since, 
+$$M = A^TA \implies k(M) = k(A^TA) = k(A)^2 \implies k(A) = O(\epsilon_{mach}^{-\frac{1}{2}})$$
+
+
+\subsection*{2 Proof}
+
+We can write $\tilde Q = (A + \delta A)\tilde R^{-1} \text{when} \| \delta A\|_2 \le O(\epsilon_{mach})$. Under this circumstance, we find that $\tilde Q$ is nearly orthogonal. we have,
+
+$$\frac{\|\hat M \tilde M \|_2}{\|\hat M \|} \le O(\epsilon_{mach})$$
+
+And Cholesky is backward stable, $\tilde R^{-1}$ will be accurate. Denote $A' = (A + \delta A)$, given $\frac{\|\delta A \|_2}{A} \le O(k(A)\epsilon_{mach})$. By $k(R) = k(A)$
+
+$$\tilde M = A'^T A' \implies \tilde Q = A'\hat R^{-1} \ \text{is orthogonal} \implies \|\hat Q - \tilde Q \|_2 \le O(k(A)^2\epsilon_{mach})$$
+
+Now we can get, $\|I -\hat Q \hat Q^T \|_F \le \|\hat Q(\hat Q -\tilde Q )^T \|_F + O(\epsilon_{mach}^2) = O(k(A)^2\epsilon_{mach})$
+
+
+\subsection*{3 Proof}
+
+From the conclusion we get in the previous parts, $ \text{eignvalues of }\hat Q^T \hat Q \le O(k(A)^2\epsilon_{mach})$ 
+
+$$k(\hat Q) = O(\frac{1 + k(A) \sqrt{\epsilon_{mach}}}{1 - k(A) \sqrt{\epsilon_{mach}}})$$
+
+This is bounded by CONSTANT. Therefore, the second part of CholeskyQR will maintain orthogonality in $O(\epsilon_{mach})$
+\end{document}

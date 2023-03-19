@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+  
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 413}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+For each term of LHS, we see that,
+
+$$\text{Num of Lattice Path From $(0, 0, 0)$ to $(i, j, n )$} = {n + i + j \choose i, j , n}$$
+
+$$\text{Num of Lattice Path From $(i, j, n + 1)$ to $(n, n , 2n + 1)$} = {3n - i - j \choose n-i, n-j , n}$$
+
+Since ${n + i + j \choose i, j , n}$ represents the number of lattice path from $(0,0,0)$ to $(i, j, n )$ with the last $z$ coordinate at $n$ when $x=i,y=j$.
+
+Therefore, the last part, we can only begin at $(i, j, n + 1)$.
+
+Therefore, LHS represents the total number of lattice path from $(0,0,0)$ to $(n, n , 2n + 1)$, which is exactly the RHS.
+
+
+\subsection*{2}
+
+\textbf{Construction}
+
+We need to construct an order which can be derived from $\lhd$, which is $\lhd_2$ and prove it is total order.
+
+$$(x_1, y_1) \lhd (x_2, y_2) \iff x_1 \le x_2 \land y_1 \le y_2 \implies (x_1 \le x_2 \land y_1 = y_2 ) \lor y_1 < y_2 \iff (x_1, y_1) \lhd_2 (x_2, y_2)$$
+
+\textbf{Proof}
+
+It is reflective, since $(x, y)$, $x \le x$, so  $(x \le x \land y = y )$ is true.
+
+It is symmetric, since if $(x_1, y_1) \lhd_2 (x_2, y_2)$, it is antisymmetric. 
+
+It is transitive, since if $(x_1, y_1) \lhd_2 (x_2, y_2)$, $(x_2, y_2) \lhd (x_3, y_3)$, we cna have $(x_1, y_1) \lhd_2 (x_3, y_3)$
+
+It is total order, so it is linear extention.
+
+\end{document}

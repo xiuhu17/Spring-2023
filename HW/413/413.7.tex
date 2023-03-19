@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+  
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{Math 413}
+\author{Zhihao Wang}
+\date{Mar 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1 Proof}
+
+First we convert the equation of $LHS$ and $RHS$,
+
+$$\text{LHS} = \text{Number of different Dyck Paths from (0, 0) to (n + 1, n + 1)}$$
+$$ C_k = \text{Number of different Dyck Paths from (0, 0) to (k, k)}$$
+$$ C_{n-k} = \text{Number of different Dyck Paths from (k + 1, k) to (n + 1,  n)}$$
+
+\textbf{Explaination}
+
+Partition the Dyck Paths into small parts, $C_k$ means the number the last step we can step on the $y = x$ line(except the final point $(n + 1, n + 1)$). Therefore, after this step, we can only go directly to right, then get $(k + 1, k)$. Then, we can get to location $(n + 1, n)$ by using $C_{n-k}$ since we can not up upward which will touch $y = x$ line. After we get to $(n + 1, n)$ we can only go upward to $(n + 1, n + 1)$. 
+
+Therefore,
+
+$$\text{LHS} = \sum \limits_{k=0}^{n} C_kC_{n-k}$$
+
+\subsection*{2 Proof}
+
+\subsubsection*{(a)}
+    Suppose $S$ does not have a chain containing $m + 1$ elements, which means, the max chain is $x \le m$. By theorem 5.6.1, we know that, we can partition the set no less than $x$.
+
+    $$\frac{mn + 1}{x} \ge \frac{mn + 1}{m} > n$$
+
+    By the average rule in chapter 3, we know that there must be at least one antichain with length greater or equal than $n + 1$.
+    
+\subsubsection*{(b)}
+    We can build a partial order(not total order) $ \preceq	$. That is $(a_i, i) \preceq (a_j, j) \iff a_i \le a_j \land i \le j $
+
+    This is  partial order because, 
+
+    $$\text{Reflexive: } a_i \le a_i \land i \le i \implies (a_i, i) \preceq (a_i, i)$$
+    $$\text{Antisymmetric: } (a_i, i) \preceq (a_j, j) \land (a_j, j) \preceq (a_i, i) \implies a_i \le a_j \land i \le j \land  a_j \le a_i \land j \le i \implies (a_i, i) = (a_j, j)$$
+    $$\text{Transitive: } (a_i, i) \preceq (a_j, j) \land (a_j, j)  \preceq (a_k, k) \implies a_i \le a_j \le a_k \land i \le j \le k \implies (a_i, i) \preceq (a_k, k) $$
+
+    If two elements are not comparable, WLOG, $i < j$
+
+    $$(a_i, i) \npreceq (a_j, j) \land (a_j, j) \npreceq (a_i, i) \implies a_i \ge a_j$$
+    
+    Now using the conclusion from part a, we know, we can either have a chain of length $m + 1$ which is weakly increasing or have an antichain of length $n + 1$ which is weakly decreasing. 
+
+\subsection*{3}
+
+We can reduce this problem to proving the max chain of $H$ is $\frac{3}{4}n$, therefore we can claim that the number of antichain will be at least  $\frac{3}{4}n$, hence, by averagin rule in chap3 we can have there at least one antichain with size $\frac{n^2}{\frac{3}{4}n + 1} \ge \frac{4}{3}n$
+
+Now we need to build a chain, with 
+
+$$\text{Step 1: } \emptyset$$
+$$\text{Step 2: } \{ 2 \}$$
+$$\text{Step 1: } \{2, 4\}$$
+$$...$$
+$$\text{Step} \frac{n}{2} + 1 \text{: } \{2, 4, ..., \frac{n}{2}\}$$
+$$\text{Step} \frac{n}{2} + 2 \text{: } \{2, 4, ..., \frac{n}{2}, 1, 3\}$$
+$$\text{Step} \frac{n}{2} + 3 \text{: } \{2, 4, ..., \frac{n}{2}, 1, 3, 5, 7\}$$
+$$...$$
+$$\text{Step} \frac{3}{4}n \text{: } \{2, 4, ..., \frac{n}{2}, 1, 3, ..., \frac{n}{2} - 2, \frac{n}{2} - 1\}$$
+
+This is a chain of length $\frac{3}{4}n + 1$, and follow the rule that, $|A|$ has no odd is its size if odd. 
+
+\subsection*{4}
+    Suppose  non-intersect means $f(x) \le g(x), \forall x \in [0,1]$
+    
+    We can build a partial order on those functions that, $f(x) \preceq g(x) \iff f(x) \le g(x), \forall x \in [0,1]$
+
+
+    
+    $$\text{Reflexive: } f(x) \le f(x), \forall x \in [0,1]$$
+    $$\text{Antisymmetric: } f(x) \preceq g(x) \land g(x) \preceq f(x) \implies f(x) = g(x) \forall x \in [0,1]$$
+    $$\text{Transitive: }f(x) \preceq g(x) \land g(x)  \preceq p(x) \implies f(x) \preceq p(x) \implies f(x) \ge p(x) \forall x \in [0, 1] \implies f(x) \preceq p(x)$$
+
+    Since any $t$ we can only have at most $t - 1$ non-intersect function, which means the max size of anti chain is $t - 1$. By theorem 5.6.2, we know that we can partition it into $t - 1$ chains, where all function in the same chains are comparable which means all of them are non-intersect. 
+
+    
+\end{document}

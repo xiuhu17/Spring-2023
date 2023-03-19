@@ -65,7 +65,7 @@
 
 \maketitle
 
-\subsection*{1}
+\subsection*{1 Proof}
 
 We can split this, 
 
@@ -98,7 +98,7 @@ Then, according to the second equation,
 \end{split}
 \]
 
-\subsection*{2}
+\subsection*{2 Proof}
 
 With the same process, we can find the representation for $x_1$,
 
@@ -139,11 +139,38 @@ According to the given equation, then we assign,
 
 $$A_{12} = U, A_{22}^{-1}A_{21} = V^T, A_{12}A_{22}^{-1}b_2 = 0$$
 
-Also, we use the euqatioin from the first part,
+Therefore, we can assign $b_2 = 0$, $A_{22} = I$
+
+$$\begin{bmatrix} A & U \\ V^T & I\end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} b \\ 0 \end{bmatrix}$$
+
+This will reprocude the equation of,
+
+$$(A - UV^T) x = b$$
+
+\subsection*{3 Proof}
+
+Using the equation from question $1$, we can have,
 
 
+$$(A_{22} - A_{21}A_{11}^{-1}A_{12})x_2 = b_2 -  A_{21}A_{11}^{-1}b_1 $$
+
+By using  $A_{12} = U, A_{21} = V^T, A_{22} = I, b_2 = 0$, $A_{22} = I$, we have,
 
 
+$$(I -  V^TA^{-1}U)y = 0 -  V^TA^{-1}b $$
 
+Therefore, we have,
 
+$$y = (I -  V^TA^{-1}U)^{-1}(-  V^TA^{-1}b )$$
+
+Since, we have, $Ax + Uy = b$, we can get,
+
+\[
+\begin{split}
+Ax = b - Uy &= b - U(I -  V^TA^{-1}U)^{-1}(-  V^TA^{-1}b ) \\
+            &= b + U(I -  V^TA^{-1}U)^{-1}V^TA^{-1}b 
+\end{split}
+\]
+
+Then we prove this.
 \end{document}
