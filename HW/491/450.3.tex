@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\documentclass{article}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+  
+\geometry{left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+% \indent
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corrolary}{Corrolary}
+\newtheorem*{consider}{Consider}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{suppose}{Suppose}
+\newtheorem*{notice}{Notice}
+\newtheorem*{define}{Define}
+\newtheorem*{denote}{Denote}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{claim}{Claim}
+\newtheorem*{proof}{Proof}
+\newtheorem*{case}{Case}
+\newtheorem*{skill}{Skill}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{algorithm}{Algorithm}
+\def\theo{\begin{theorem}}
+\def\ax{\begin{axiom}}
+\def\alg{\begin{algorithm}}
+\def\pro{\begin{proof} }
+\def\cla{\begin{claim}}
+\def\sk{\begin{skill}}
+\def\prop{\begin{proposition}}
+\def\defi{\begin{definition}}
+\def\lem{\begin{lemma}}
+\def\cor{\begin{corrolary}}
+\def\den{\begin{denote}}
+\def\define{\begin{define}}
+\def\supp{\begin{suppose}}
+\def\enu{\begin{enumerate} \end{enumerate}}
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\KK{\mathbb{K}}
+\def\calBB{\mathcal{B}}
+\def\calCC{\mathcal{C}}
+\def\calLL{\mathcal{L}}
+\def\calPP{\mathcal{P}}
+\def\implies{\Longrightarrow}
+\def\bfit#1{\textit{\textbf{#1}}}
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{16}
+\title{ECE 491 EC}
+\author{Zhihao Wang}
+\date{Feb 2023}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1 Proof}
+
+Since we have the equation,
+
+$$g(x) = x - \frac{f(x)}{f'(x)} = x - \frac{(x - x^*)^mh(x)}{((x - x^*)^mh(x))'}$$
+
+We can further reduce this function into,
+
+$$g(x) = x - \frac{(x - x^*)h(x)}{mh(x) + (x - x^*)h'(x)}$$
+
+\subsection*{2 Proof}
+
+Since we get $g(x)$ from previous one, we can get $g'(x)$ as,
+
+$$A(x) = (x - x^*)h(x) \implies A(x^*) = 0, A'(x^*) = h(x^*)$$
+
+$$B(x) = mh(x) + (x - x^*)h'(x) \implies B(x^*) = mh(x^*), B'(x^*) = (m + 1)h'(x^*)$$
+
+Since,
+
+$$g(x) = x - \frac{A(x)}{B(x)} \implies g'(x) = 1 - \frac{A'(x)B(x) - B'(x)A(x)}{B^2(x)}$$
+
+So we have,
+
+$$g(x^*) = 1 - \frac{h(x^*)mh(x^*)}{m^2h^2(x^*)} = 1 - \frac{1}{m}$$
+
+Therefore, I have,
+
+$$C = |g'(x^*)| = |1 - \frac{1}{m}| = 1 - \frac{1}{m} $$
+
+\subsection*{3 Proof}
+
+Now we have,
+
+$$g(x) = x - k\frac{A(x)}{B(x)} \implies g'(x) = 1 - k\frac{A'(x)B(x) - B'(x)A(x)}{B^2(x)}$$
+
+Then,
+
+$$g(x^*) = 1 - k\frac{h(x^*)mh(x^*)}{m^2h^2(x^*)} = 1 - \frac{k}{m}$$
+
+Therefore, 
+
+$$C = |g'(x^*)| = |1 - \frac{k}{m}|  = 0 \implies  k = m$$
+
+In order to make it quadratic, make $k = m$. 
+
+\end{document}
